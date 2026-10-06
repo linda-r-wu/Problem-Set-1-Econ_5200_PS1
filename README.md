@@ -1,43 +1,25 @@
-# Average Basket Value Audit — Objections and Evidence
+# Average Basket Value Audit: Objections and Evidence
 
-## Objective
+1. **“Why trim legitimate consumer purchases? Will this number reconcile with revenue?”**
 
-I reviewed the basket-value recommendation to check whether it measures the right thing and whether the evidence supports it.
+   A trimmed mean removes real spending from both ends and measures the middle of the distribution rather than average revenue per transaction.
 
-## 1. Why trim legitimate consumer purchases?
+   **Type:** Statistic.
 
-**Type:** Statistic.
+   **Evidence needed:** After excluding B2B and cancelled orders, compare the trimmed mean with total consumer revenue divided by completed consumer transactions. Quantify the difference.
 
-A trimmed mean removes spending from both ends of the distribution. After excluding B2B and cancelled orders, it can still remove legitimate consumer purchases.
+2. **“Did you fix the logging change, or just hide it through trimming?”**
 
-**Evidence needed:** Compare the trimmed mean with total completed consumer basket value divided by transaction count, using the same eligible transactions.
+   Cancelled orders can remain in the middle 80%, so trimming does not guarantee comparable transactions across years.
 
-**Finding:** In both simulated years, the consumer mean was $42.15 and the trimmed consumer mean was $36.53. Trimming lowered the reported basket value by $5.62.
+   **Type:** Data.
 
-**Conclusion:** I kept my Phase 2 recommendation: use the untrimmed mean of completed consumer baskets. It matches revenue per transaction in the simulation. I chose it because it matches the metric’s definition, not because it shows zero growth.
+   **Evidence needed:** Show counts and basket totals by year, customer type and order status. Apply the same completed-consumer inclusion rule to both years and reconcile the results against finance records.
 
-## 2. Did we fix the logging change or hide it through trimming?
+3. **“What decision is this metric supposed to support?”**
 
-**Type:** Data.
+   Typical basket value, revenue per transaction and spending per customer measure different things.
 
-Cancelled orders can remain in the middle 80% of baskets. Trimming alone does not ensure that both years include comparable transactions.
+   **Type:** Business definition.
 
-**Evidence needed:** Compare transaction counts and basket totals by year, customer type and order status. Apply the same completed-consumer inclusion rule to both years, then check the resulting totals and counts against independent finance records.
-
-**Current status:** The simulation identifies cancelled orders through their status labels. Actual finance records have not been provided, so independent reconciliation remains outstanding.
-
-## 3. What decision should this metric support?
-
-**Type:** Business definition.
-
-Typical basket value, revenue per transaction and spending per customer answer different questions.
-
-**Evidence needed:** Agree with the client on the metric’s purpose, numerator, denominator and exclusions. Confirm whether transactions or customers should receive equal weight.
-
-**Recommendation:** For revenue per completed consumer transaction, use the arithmetic mean after excluding B2B and cancelled orders. A median or trimmed mean can be shown separately as a measure of typical basket size.
-
-## Most Important Remaining Check
-
-Check that consumer sales totals and completed order counts match finance’s records, and agree on how to handle refunds, discounts and taxes.
-
-The results establish what happened in the controlled simulation. They do not establish the retailer’s actual growth.
+   **Evidence needed:** Agree on the metric’s purpose, numerator, denominator and exclusions. Confirm whether each transaction or each customer should receive equal weight.
